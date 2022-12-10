@@ -32,6 +32,7 @@ if(isset($_POST['order'])){
     $supplier_email = mysqli_real_escape_string($con, $supplier_email);
     $productName = stripslashes($_REQUEST['productName']);
     $productName = mysqli_real_escape_string($con, $productName);
+    echo $productName;
     $quantity = stripslashes($_REQUEST['quantity']);
     $quantity = mysqli_real_escape_string($con, $quantity);
     $query   = "INSERT into `orders` (supplier_name, supplier_email, product_name, quantity, status)
@@ -41,20 +42,20 @@ if(isset($_POST['order'])){
     if ($result){
         echo "<div class='form'>
         <h3>You order created successfully</h3><br/>
-        <p class='link'>Click here to <a href='addSuppliers.php'>Add Suppliers</a> again.</p>
+        <p class='link'>Click here to <a href='orders.php'>Orders</a> again.</p>
         </div>";
         
     } else {
         echo "<div class='form'>
         <h3>Field Missing</h3><br/>
-        <p class='link'>Click here to <a href='addSuppliers.php'>Add Suppliers</a> again.</p>
+        <p class='link'>Click here to <a href='orders.php'>Orders</a> again.</p>
         </div>";
 
     }
 }
 else{
 ?>
-<div class = "form">
+<form class = "form" method="post" name="order">
 <?php
     
     $name=$_GET['name'];
@@ -75,7 +76,7 @@ else{
     <input type="text" class="login-input" name="quantity" placeholder="Quantity" required/>
    <input type="submit" class="login-button" name="order" value="order">
  
-</div>
+</form>
 <?php
 }
 ?>
